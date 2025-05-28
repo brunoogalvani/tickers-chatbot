@@ -2,16 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const OpenAI = require('openai');
+const dotenv = require('dotenv')
+dotenv.config()
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const HUGGINGFACE_API_TOKEN = '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';
-
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/hf-inference/models/sarvamai/sarvam-m/v1",
-  apiKey: HUGGINGFACE_API_TOKEN,
+  apiKey: process.env.HUGGINGFACE_API_TOKEN,
 });
 
 const sessionContexts = {};
